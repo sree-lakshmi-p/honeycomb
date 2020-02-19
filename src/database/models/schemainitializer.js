@@ -2,6 +2,10 @@ const product = require("./product_details");
 const properties = require("./product_properties");
 const categories = require("./categories");
 const manufacturer = require("./manufacturer");
+const cart = require("./cart");
+const user = require("./userdata");
+
+
 
 const db = require("../connector");
 
@@ -22,5 +26,18 @@ manufacturer.belongsToMany(product, {
     timestamp: false
 })
 
+product.belongsToMany(user, {
+    through: cart,
+    foreignKey: "product_id",
+    otherKey: "user_id",
+    timestamp: false
+})
+
+user.belongsToMany(product, {
+    through: cart,
+    foreignKey: "user_id",
+    otherKey: "product_id",
+    timestamp: false
+})
 
 db.sync();
