@@ -3,6 +3,7 @@ const product = require("./database/models/product_details");
 const manufacturer = require("./database/models/manufacturer");
 const category = require("./database/models/categories");
 const properties = require("./database/models/product_properties");
+const user = require('./database/models/user_data')
 
 
 const router = express.Router();
@@ -99,14 +100,26 @@ router.post("/properties", (req,res) => {
     }
     res.json({status:"executed"});
 }) ;
+//API for adding new user
+router.post("/adduser", (req,res) => {
+    if(req.body !== null) {
+    console.log(req.body);
+    let newUser = {
+        username: req.body.username,
+        password: req.body.password
+    };
+    user.create(newUser, use =>{
+        console.log("SAVED");
+    });
+
+    }
+    res.json({status:"executed"});
+}) ;
+
 
 //API for adding items to cart
 router.put("/cart",(req,res) => {
-    if(req.body !== null) {
-        console.log(req.body);
-        let newItem = {
-            username: req.body.username,
-            password: req.body.username,
+    user.findOne({where ({id : })})
 
         }
     }
