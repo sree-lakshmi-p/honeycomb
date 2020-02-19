@@ -106,7 +106,8 @@ router.put("/cart",(req,res) => {
         console.log(req.body);
         let newItem = {
             username: req.body.username,
-            
+            password: req.body.username,
+
         }
     }
 }
